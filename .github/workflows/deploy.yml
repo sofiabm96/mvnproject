@@ -1,0 +1,31 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Configurar Maven
+        uses: s4u/setup-maven-action@v1.4.0
+
+      - name: Construir aplicación
+        run: mvn clean package
+
+      - name: Iniciar sesión en AWS ECR
+        run: |
+          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 412631849822.dkr.ecr.eu-north-1.amazonaws.com
+
+      - name: Construir y subir Docker a ECR
+        run: |
+          docker build -t mi-aplicacion .
+          docker tag mi-aplicacion 412631849822.dkr.ecr.us-east-1.amazonaws.com/sofia/mvnproject
+          docker push 412631849822.dkr.ecr.us-east-1.amazonaws.com/sofia/mvnproject
