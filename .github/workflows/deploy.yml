@@ -18,6 +18,9 @@ jobs:
           java-version: '11'
           distribution: 'zulu'
 
+      - name: Verify Java version
+        run: java -version
+
       - name: Configurar Maven
         uses: s4u/setup-maven-action@v1.4.0
 
