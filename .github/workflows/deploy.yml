@@ -33,5 +33,5 @@ jobs:
       - name: Construir y subir Docker a ECR
         run: |
           docker build -t mi-aplicacion .
-          docker tag mi-aplicacion 412631849822.dkr.ecr.us-east-1.amazonaws.com/sofia/mvnproject
-          docker push 412631849822.dkr.ecr.us-east-1.amazonaws.com/sofia/mvnproject
+          docker tag mi-aplicacion 412631849822.dkr.ecr.eu-north-1.amazonaws.com/sofia/mvnproject
+          docker push 412631849822.dkr.ecr.eu-north-1.amazonaws.com/sofia/mvnproject
