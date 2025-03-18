@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '11'
-          distribution: 'adoptopenjdk'
+          distribution: 'adoptium'
 
       - name: Configurar Maven
         uses: s4u/setup-maven-action@v1.4.0
