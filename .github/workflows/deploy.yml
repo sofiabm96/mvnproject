@@ -23,6 +23,8 @@ jobs:
 
       - name: Configurar Maven
         uses: s4u/setup-maven-action@v1.4.0
+        with:
+          maven-version: '3.8.1'
 
       - name: Construir aplicación
         run: mvn clean package
